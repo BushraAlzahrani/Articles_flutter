@@ -1,4 +1,8 @@
+import 'package:articles/Router/Routes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -10,7 +14,14 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+  return Sizer(
+      builder: (context, orientation, deviceType) {
+        return GetMaterialApp(
+          debugShowCheckedModeBanner: false,
+          initialRoute: Routes.categoryScreen,
+          getPages: AppRoute.routes,
+        );
+      },
     );
   }
 }
