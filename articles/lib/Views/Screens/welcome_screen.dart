@@ -8,15 +8,34 @@ class WelcomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar( 
+      backgroundColor: mainColor,
+      appBar: AppBar(
         automaticallyImplyLeading: true,
-       ),
-      body: Container(
-        color: mainColor,
-        width: double.infinity,
-        height: double.infinity,
-        child: Center(child: Text('WelcomeScreen')),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
       ),
+      body: ListView(children: [
+        Column(children: [
+          Container(
+            height: 440,
+            width: 460,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage('assets/images/knowledge_hub_logo.png'),
+            )),
+            child: SizedBox(),
+          ),
+          Container(
+            height: 440,
+            width: 460,
+            decoration: BoxDecoration(
+                image: DecorationImage(
+              image: AssetImage('assets/images/welcomeScreen.png'),
+            )),
+            child: SizedBox(),
+          ),
+        ]),
+      ]),
       drawer: SideBarMenu(),
     );
   }

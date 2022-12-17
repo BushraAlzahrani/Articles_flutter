@@ -1,3 +1,4 @@
+import 'package:articles/Views/Widgets/text_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../Logic/Controller/auth_controller.dart';
@@ -10,7 +11,7 @@ import '../../Widgets/custom_button.dart';
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
   final controller = Get.find<AuthController>();
-  AuthApiClient authApiClient = AuthApiClient();
+  AuthService authApiClient = AuthService();
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -45,6 +46,21 @@ class LoginScreen extends StatelessWidget {
                             controller.passwordTextController.text);
                   
                       }),
+
+                      SizedBox(height: 15,),
+
+                      Align(
+                        alignment: Alignment.topRight,
+                        child: Row(
+                          children: [
+                            TextUtils(text: 'No Account?', fontSize: 18, color: mainColor),
+                            TextButton(onPressed: (){
+                              Get.toNamed(Routes.registerScreen);
+                            }, 
+                            child: TextUtils(text: 'Sign Up', fontSize: 18, color: mainColor, underLine: TextDecoration.underline,)),
+                          ],
+                        ),
+                      ),
                 ]),
               ),
             ),

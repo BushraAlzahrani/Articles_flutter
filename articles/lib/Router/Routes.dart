@@ -7,9 +7,9 @@ import '../Views/Screens/Articles/category_screen.dart';
 import '../Views/Screens/Auth/login_screen.dart';
 import '../Views/Screens/Auth/register_screen.dart';
 import '../Views/Screens/welcome_screen.dart';
+import '../Views/Screens/Articles/all_articles.dart';
 
 class AppRoute {
-
   //GetPage
 
   static final routes = [
@@ -33,9 +33,14 @@ class AppRoute {
       page: () => AddArticleScreen(),
       binding: ArticleBinding(),
     ),
-     GetPage(
+    GetPage(
       name: Routes.categoryScreen,
       page: () => CategoryScreen(),
+    ),
+     GetPage(
+      name: Routes.allArticles,
+      page: () => AllArticles(),
+      binding: ArticleBinding(),
     ),
   ];
 }
@@ -44,8 +49,8 @@ class Routes {
   static const welcomeScreen = '/welcomeScreen';
   static const registerScreen = '/registerScreen';
   static const loginScreen = '/loginScreen';
-  // static const forgetPasswordScreen = '/forgetPasswordScreen';
   static const articleScreen = '/articleScreen';
   static const addArticleScreen = '/addArticleScreen';
+  static const allArticles = '/allArticles';
   static const categoryScreen = '/categoryScreen';
 }

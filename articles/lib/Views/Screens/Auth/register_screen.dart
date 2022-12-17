@@ -1,5 +1,4 @@
 import 'package:articles/Router/Routes.dart';
-import 'package:articles/Views/Widgets/text_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../Logic/Controller/auth_controller.dart';
@@ -11,7 +10,7 @@ import '../../Widgets/custom_button.dart';
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
   final controller = Get.find<AuthController>();
-  AuthApiClient authApiClient = AuthApiClient();
+  AuthService authApiClient = AuthService();
   @override
   Widget build(BuildContext context) {
     return SafeArea(

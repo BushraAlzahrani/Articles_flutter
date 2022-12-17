@@ -1,29 +1,73 @@
+import 'package:articles/Router/Routes.dart';
+import 'package:articles/Service/article_service.dart';
+import 'package:articles/Views/Widgets/text_utils.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import '../../../Logic/Controller/article_controller.dart';
 import '../../../Utils/colors.dart';
 import '../../Widgets/Articles/category_card.dart';
 
 class CategoryScreen extends StatelessWidget {
-  const CategoryScreen({super.key});
+  CategoryScreen({super.key});
+  final controller = Get.find<ArticleController>();
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
-      child: Scaffold(
+        child: Scaffold(
+      appBar: AppBar(
+        elevation: 0,
         backgroundColor: greyColor,
-        body: Padding(
-          padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
-          child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
+        iconTheme: IconThemeData(color: mainColor),
+        title: TextUtils(
+          text: 'Categories',
+          fontSize: 20,
+          color: mainColor,
+          fontWeight: FontWeight.bold,
         ),
-            itemCount: 6,
-            itemBuilder: (context, index) {
-            return CategoryCard();
+      ),
+      backgroundColor: greyColor,
+      body: Padding(
+        padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 20,
+            mainAxisSpacing: 20,
+          ),
+          itemCount: 6,
+          itemBuilder: (context, index) {
+            return InkWell(
+                onTap: () {
+                  controller.getArticlesPerCatgory(
+                      controller.categoryList[index].id.toString());
+                  Get.toNamed(Routes.allArticles);
+                },
+                child: Container(
+                  color: whiteColor,
+                  child: Column(
+                    children: [
+                      Container(
+                          height: 140,
+                          width: 160,
+                          decoration: BoxDecoration(
+                              color: whiteColor,
+                              image: DecorationImage(
+                                  image: AssetImage(
+                                    controller.categoryList[index].image!,
+                                  ),
+                                  fit: BoxFit.cover)),
+                          child: SizedBox()),
+                      Divider(
+                        color: darkGreyColor,
+                      ),
+                      Text(controller.categoryNames[index].toUpperCase())
+                    ],
+                  ),
+                ));
           },
         ),
-        ),
+      ),
     ));
   }
 }
