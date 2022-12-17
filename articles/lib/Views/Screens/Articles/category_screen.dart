@@ -1,11 +1,9 @@
 import 'package:articles/Router/Routes.dart';
-import 'package:articles/Service/article_service.dart';
 import 'package:articles/Views/Widgets/text_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../../Logic/Controller/article_controller.dart';
 import '../../../Utils/colors.dart';
-import '../../Widgets/Articles/category_card.dart';
 
 class CategoryScreen extends StatelessWidget {
   CategoryScreen({super.key});
@@ -37,34 +35,35 @@ class CategoryScreen extends StatelessWidget {
           ),
           itemCount: 6,
           itemBuilder: (context, index) {
-            return InkWell(
-                onTap: () {
-                  controller.getArticlesPerCatgory(
-                      controller.categoryList[index].id.toString());
-                  Get.toNamed(Routes.allArticles);
-                },
-                child: Container(
-                  color: whiteColor,
-                  child: Column(
-                    children: [
-                      Container(
-                          height: 140,
-                          width: 160,
-                          decoration: BoxDecoration(
-                              color: whiteColor,
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                    controller.categoryList[index].image!,
-                                  ),
-                                  fit: BoxFit.cover)),
-                          child: SizedBox()),
-                      Divider(
-                        color: darkGreyColor,
+            return GetBuilder<ArticleController>(
+                builder: (_) => InkWell(
+                    onTap: () {
+                      controller.getArticlesPerCatgory(
+                          controller.categoryList[index].id.toString());
+                      Get.toNamed(Routes.allArticles);
+                    },
+                    child: Container(
+                      color: whiteColor,
+                      child: Column(
+                        children: [
+                          Container(
+                              height: 140,
+                              width: 160,
+                              decoration: BoxDecoration(
+                                  color: whiteColor,
+                                  image: DecorationImage(
+                                      image: AssetImage(
+                                        controller.categoryList[index].image!,
+                                      ),
+                                      fit: BoxFit.cover)),
+                              child: SizedBox()),
+                          Divider(
+                            color: darkGreyColor,
+                          ),
+                          Text(controller.categoryNames[index].toUpperCase())
+                        ],
                       ),
-                      Text(controller.categoryNames[index].toUpperCase())
-                    ],
-                  ),
-                ));
+                    )));
           },
         ),
       ),

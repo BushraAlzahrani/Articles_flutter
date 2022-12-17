@@ -41,26 +41,23 @@ class LoginScreen extends StatelessWidget {
                   ),
                   CustomButton(
                       text: 'Login',
+                      textColor: mainColor,
+                      buttonColor: secondaryColor,
                       onPressed: () {
-                        authApiClient.login(controller.userNameTextController.text,
+                        authApiClient.login(
+                            controller.userNameTextController.text,
                             controller.passwordTextController.text);
-                  
                       }),
-
-                      SizedBox(height: 15,),
-
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Row(
-                          children: [
-                            TextUtils(text: 'No Account?', fontSize: 18, color: mainColor),
-                            TextButton(onPressed: (){
-                              Get.toNamed(Routes.registerScreen);
-                            }, 
-                            child: TextUtils(text: 'Sign Up', fontSize: 18, color: mainColor, underLine: TextDecoration.underline,)),
-                          ],
-                        ),
-                      ),
+                  SizedBox(
+                    height: 30,
+                  ),
+                  CustomButton(
+                      text: 'New account',
+                      textColor: mainColor,
+                      buttonColor: whiteColor,
+                      onPressed: () {
+                        Get.toNamed(Routes.registerScreen);
+                      }),
                 ]),
               ),
             ),

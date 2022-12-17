@@ -77,6 +77,8 @@ class AddArticleScreen extends StatelessWidget {
                   ),
                   CustomButton(
                       text: 'Add',
+                     textColor: mainColor,
+                      buttonColor: secondaryColor,
                       onPressed: () {
                         articleService.addArticle(
                             controller.articleTitle.text,
@@ -86,13 +88,6 @@ class AddArticleScreen extends StatelessWidget {
                             controller.articleRef.text,
                             controller.selectedCategoryId.value);
 
-                        // articleService.addArticle(
-                        //     'title',
-                        //     'https://media.istockphoto.com/id/1325204361/photo/fragile-brain-care.jpg?b=1&s=170667a&w=0&k=20&c=3ygrFAonAiX3kdfwYkpfS3d9PSDA5nkMqfWPtlSTMw8',
-                        //     'content',
-                        //     'summary',
-                        //     'https://media.istockphoto.com/id/1325204361/photo/fragile-brain-care.jpg?b=1&s=170667a&w=0&k=20&c=3ygrFAonAiX3kdfwYkpfS3d9PSDA5nkMqfWPtlSTMw8',
-                        //     '1');
                       }),
                 ]),
               ),

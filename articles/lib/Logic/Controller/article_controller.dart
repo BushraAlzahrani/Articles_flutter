@@ -32,6 +32,10 @@ class ArticleController extends GetxController {
     getTheArticle();
   }
 
+
+// Articles
+
+// Get all the articles save it to a list to load when the app first opened
   void getTheArticle() async {
     var articles = await ArticleService.getArticles();
     try {
@@ -44,6 +48,40 @@ class ArticleController extends GetxController {
     }
   }
 
+
+// Get the articles per catgory add it to a list and update it with each call
+    void getArticlesPerCatgory(String catgoryId) async {
+    var articles = await ArticleService.getArticlesPerCategory(catgoryId);
+    try {
+      isLoading(true);
+      if (articles.isNotEmpty) {
+        articlesPerCategoryList.addAll(articles);
+      }
+    } finally {
+      isLoading(false);
+    }
+    update();
+  }
+
+
+// Get the articles details add it to a list and update it with each call
+    void getArticleDetails(String articleId) async {
+    var articles = await ArticleService.getArticleDetails(articleId);
+    try {
+      isLoading(true);
+      if (articles.isNotEmpty) {
+        articleDetailsList.addAll(articles);
+      }
+    } finally {
+      isLoading(false);
+    }
+    update();
+  }
+
+
+// Catgories 
+
+// Get all the catgories save it to a list to load when the app first opened
   void getCategories() async {
     var categories = await ArticleService.getArticleCategories();
     try {
@@ -58,28 +96,5 @@ class ArticleController extends GetxController {
     }
   }
 
-  void getArticlesPerCatgory(String catgoryId) async {
-    var articles = await ArticleService.getArticlesPerCategory(catgoryId);
-    try {
-      isLoading(true);
-      if (articles.isNotEmpty) {
-        articlesPerCategoryList.addAll(articles);
-      }
-    } finally {
-      isLoading(false);
-    }
-  }
 
-
-    void getArticleDetails(String articleId) async {
-    var articles = await ArticleService.getArticleDetails(articleId);
-    try {
-      isLoading(true);
-      if (articles.isNotEmpty) {
-        articleDetailsList.addAll(articles);
-      }
-    } finally {
-      isLoading(false);
-    }
-  }
 }

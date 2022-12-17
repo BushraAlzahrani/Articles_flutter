@@ -44,6 +44,8 @@ class RegisterScreen extends StatelessWidget {
                     height: 20,
                   ),
                   CustomButton(
+                  textColor: mainColor,
+                      buttonColor: secondaryColor,
                       text: 'Sgin Up',
                       onPressed: () {
                         authApiClient.registerUser(
