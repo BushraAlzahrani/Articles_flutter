@@ -1,13 +1,12 @@
 import 'package:articles/Models/category_models.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../Models/article_model.dart';
 import '../../Service/article_service.dart';
 
 class ArticleController extends GetxController {
-
-
   TextEditingController articleTitle = TextEditingController();
   TextEditingController articleCategory = TextEditingController();
   TextEditingController articleRef = TextEditingController();
@@ -24,6 +23,8 @@ class ArticleController extends GetxController {
   var isLoading = true.obs;
   var selectedCategoryId = '1'.obs;
   var selectedCategory = ''.obs;
+  var storage = GetStorage();
+  var articleID = '';
 
   @override
   void onInit() {
@@ -31,7 +32,6 @@ class ArticleController extends GetxController {
     getCategories();
     getTheArticle();
   }
-
 
 // Articles
 
@@ -48,25 +48,32 @@ class ArticleController extends GetxController {
     }
   }
 
-
 // Get the articles per catgory add it to a list and update it with each call
-    void getArticlesPerCatgory(String catgoryId) async {
+  void getArticlesPerCatgory(String catgoryId) async {
     var articles = await ArticleService.getArticlesPerCategory(catgoryId);
+
     try {
       isLoading(true);
       if (articles.isNotEmpty) {
+        if (catgoryId ==
+            articlesPerCategoryList
+                .where((catgory) => catgoryId == catgory.id)) {}
         articlesPerCategoryList.addAll(articles);
+      } else {
+        // articlesPerCategoryList.removeWhere((item)=>item.id == 4);
+        articlesPerCategoryList.clear();
       }
     } finally {
       isLoading(false);
     }
-    update();
+    print(
+        ' this in controller articles per category ${articlesPerCategoryList.length}');
   }
 
-
 // Get the articles details add it to a list and update it with each call
-    void getArticleDetails(String articleId) async {
+  void getArticleDetails(String articleId) async {
     var articles = await ArticleService.getArticleDetails(articleId);
+    // storage.write('articleID', articleId);
     try {
       isLoading(true);
       if (articles.isNotEmpty) {
@@ -75,11 +82,10 @@ class ArticleController extends GetxController {
     } finally {
       isLoading(false);
     }
-    update();
+  print('@@@@@@@@@ ${articleId}');
   }
 
-
-// Catgories 
+// Catgories
 
 // Get all the catgories save it to a list to load when the app first opened
   void getCategories() async {
@@ -95,6 +101,4 @@ class ArticleController extends GetxController {
       isLoading(false);
     }
   }
-
-
 }

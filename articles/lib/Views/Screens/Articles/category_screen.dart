@@ -35,8 +35,8 @@ class CategoryScreen extends StatelessWidget {
           ),
           itemCount: 6,
           itemBuilder: (context, index) {
-            return GetBuilder<ArticleController>(
-                builder: (_) => InkWell(
+            return Obx(
+                () => InkWell(
                     onTap: () {
                       controller.getArticlesPerCatgory(
                           controller.categoryList[index].id.toString());
