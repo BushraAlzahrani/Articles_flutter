@@ -52,19 +52,17 @@ class ArticleController extends GetxController {
   void getArticlesPerCatgory(String catgoryId) async {
     var articles = await ArticleService.getArticlesPerCategory(catgoryId);
 
-    try {
-      isLoading(true);
-      if (articles.isNotEmpty) {
-        if (catgoryId ==
-            articlesPerCategoryList
-                .where((catgory) => catgoryId == catgory.id)) {}
+    if (articles.isNotEmpty) {
+      if (articlesPerCategoryList.isEmpty) {
         articlesPerCategoryList.addAll(articles);
       } else {
-        // articlesPerCategoryList.removeWhere((item)=>item.id == 4);
         articlesPerCategoryList.clear();
+        articlesPerCategoryList.addAll(articles);
       }
-    } finally {
-      isLoading(false);
+    } else {
+      // articlesPerCategoryList.removeWhere((item)=>item.id == 4);
+      print('Else');
+      print(articles);
     }
     print(
         ' this in controller articles per category ${articlesPerCategoryList.length}');
@@ -82,7 +80,7 @@ class ArticleController extends GetxController {
     } finally {
       isLoading(false);
     }
-  print('@@@@@@@@@ ${articleId}');
+    print('@@@@@@@@@ ${articleId}');
   }
 
 // Catgories

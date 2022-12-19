@@ -58,7 +58,11 @@ class AllArticles extends StatelessWidget {
                                 .toString());
                                 print('IIINNNDEEEEX ${controller
                                 .articlesPerCategoryList[index].id}');
-                            Get.toNamed(Routes.articleScreen);
+                            Get.to(ArticleScreen(title: controller
+                              .articlesPerCategoryList[index].title, content: controller
+                              .articlesPerCategoryList[index].content, image: controller
+                              .articlesPerCategoryList[index].image, index: index));
+
                           },
                           child: TextUtils(
                             text: 'View Article',

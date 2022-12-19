@@ -5,7 +5,13 @@ import '../../../Logic/Controller/article_controller.dart';
 import '../../../Utils/colors.dart';
 
 class ArticleScreen extends StatelessWidget {
-  ArticleScreen({super.key});
+  ArticleScreen({super.key, required this.title,
+   required this.content, required this.image, required this.index});
+   int index;
+   String title;
+   String content;
+   String image; 
+
 
   final controller = Get.find<ArticleController>();
 
@@ -33,17 +39,11 @@ class ArticleScreen extends StatelessWidget {
             child: Center(
                 child: Padding(
               padding: const EdgeInsets.only(top: 60, left: 10, right: 10),
-              child: ListView.builder(
-                  itemCount: 1,
-                  itemBuilder: (context, index) {
-                    print(' this in article screen article ID ${index}');
-                    return 
-                    Obx(
-            () => Stack(
+              child: Stack(
                       children: [
                         Container(
                             child: Image.network(
-                                '${controller.articleDetailsList[index].image}')),
+                                '${image}')),
                         Expanded(
                           child: Container(
                             color: greyColor,
@@ -55,8 +55,7 @@ class ArticleScreen extends StatelessWidget {
                                 Align(
                                   alignment: Alignment.topLeft,
                                   child: TextUtils(
-                                    text: controller
-                                        .articleList[index].title,
+                                    text: title,
                                     fontSize: 35,
                                     color: blackColor,
                                     fontWeight: FontWeight.bold,
@@ -64,7 +63,7 @@ class ArticleScreen extends StatelessWidget {
                                 ),
                                 TextUtils(
                                     text:
-                                        '''      ${controller.articleDetailsList[index].content}''',
+                                        '''      ${content}''',
                                     // controller.articleList[index].title,
                                     fontSize: 14,
                                     color: blackColor),
@@ -73,8 +72,7 @@ class ArticleScreen extends StatelessWidget {
                           ),
                         )
                       ],
-                    ));
-                  }),
+                    )
             )),
           ),
           ));

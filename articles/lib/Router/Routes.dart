@@ -24,10 +24,10 @@ class AppRoute {
       page: () => LoginScreen(),
       binding: AuthBinding(),
     ),
-    GetPage(
-      name: Routes.articleScreen,
-      page: () => ArticleScreen(),
-    ),
+    // GetPage(
+    //   name: Routes.articleScreen,
+    //   page: () => ArticleScreen(),
+    // ),
     GetPage(
       name: Routes.addArticleScreen,
       page: () => AddArticleScreen(),
